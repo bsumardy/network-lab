@@ -1,0 +1,11 @@
+name: dc1
+topology:
+  nodes:
+    leaf1:
+      kind: linux
+      image: frrouting/frr:latest
+    spine1:
+      kind: linux
+      image: frrouting/frr:latest
+  links:
+    - endpoints: ["leaf1:eth1", "spine1:eth1"]
