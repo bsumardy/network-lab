@@ -16,6 +16,7 @@
       ansible.builtin.template:
         src: templates/frr.j2
         dest: "../containerlab/configs/{{ node_vars.hostname }}.conf"
+        mode: '0644'
       loop: "{{ nodes }}"
       loop_control:
         loop_var: node_name
