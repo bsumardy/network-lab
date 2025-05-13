@@ -1,8 +1,11 @@
 **Network Automation Lab — Initial CI/CD Setup**
+
 This repository is part of an ongoing project to automate a network lab environment using Ansible, Containerlab, and GitHub Actions. At this stage, we have completed the foundational CI/CD setup and automated validation of Ansible playbooks.
 
 **Current Milestone: CI/CD Pipeline for Ansible**
+
 ✔️ What’s Done
+
 1. Ansible directory structure is in place (ansible/)
 2. Core playbooks:
     - playbook.yml
