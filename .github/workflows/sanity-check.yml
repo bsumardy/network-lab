@@ -27,8 +27,8 @@ jobs:
 
       - name: Check Ansible playbook syntax
         run: |
-          ansible-playbook ansible/playbook.yml --syntax-check
+          ansible-playbook ansible/playbook.yml -i ansible/inventory.ini --syntax-check
 
       - name: Dry-run template rendering (check mode)
         run: |
-          ansible-playbook ansible/playbook.yml --check
+          ansible-playbook ansible/playbook.yml -i ansible/inventory.ini --check
