@@ -31,4 +31,4 @@ jobs:
 
       - name: Dry-run template rendering (check mode)
         run: |
-          ansible-playbook playbook.yml --check
+          ansible-playbook ansible/playbook.yml --check
