@@ -1,7 +1,7 @@
 - name: Push config to Containerlab node
   hosts: leaf1
   connection: ssh
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Push config
       ansible.netcommon.cli_config:

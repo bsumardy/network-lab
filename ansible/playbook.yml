@@ -2,7 +2,7 @@
 - name: Generate FRR configs locally
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: false
 
   vars:
     nodes:
@@ -13,7 +13,7 @@
 
   tasks:
     - name: Render frr.conf for each node
-      template:
+      ansible.builtin.template:
         src: templates/frr.j2
         dest: "../containerlab/configs/{{ node_vars.hostname }}.conf"
       loop: "{{ nodes }}"

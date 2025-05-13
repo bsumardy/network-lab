@@ -1,17 +1,17 @@
 - name: Push config to FRR Containerlab node
   hosts: leaf1
-  gather_facts: no
+  gather_facts: false
   become: true
   tasks:
     - name: Copy FRR config file
-      copy:
+      ansible.builtin.copy:
         src: ../configs/leaf1.cfg
         dest: /etc/frr/frr.conf
         owner: frr
         group: frr
-        mode: 0644
+        mode: '0644'
 
     - name: Restart FRR
-      shell: |
-        systemctl restart frr
-
+      ansible.builtin.systemd:
+        name: frr
+        state: restarted
