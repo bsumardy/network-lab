@@ -27,7 +27,7 @@ This repository is part of an ongoing project to automate a network lab environm
 │   └── workflows/
 │       └── sanity-check.yml  # CI workflow for lint & syntax check
 ├── requirements.txt
-
+```
 **How to Run Locally**
 
 # Activate your virtual environment
