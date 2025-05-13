@@ -51,7 +51,7 @@ jobs:
         run: |
           for pb in ansible/*.yml; do
             echo "Checking syntax for $pb"
-            ansible-playbook "$pb" --syntax-check
+            ansible-playbook "$pb" --syntax-check -i ansible/inventory.ini
           done
 
   run-check:
