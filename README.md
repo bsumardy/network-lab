@@ -15,6 +15,7 @@ This repository is part of an ongoing project to automate a network lab environm
 4. Code is passing all syntax and lint checks 
 
 📁 Project Structure (Relevant Parts)
+```bash
 .
 ├── ansible/
 │   ├── inventory.ini       # (Inventory definition)
