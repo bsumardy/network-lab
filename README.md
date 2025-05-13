@@ -1,8 +1,8 @@
-**Network Automation Lab — Initial CI/CD Setup**
+# Network Automation Lab — Initial CI/CD Setup
 
 This repository is part of an ongoing project to automate a network lab environment using Ansible, Containerlab, and GitHub Actions. At this stage, we have completed the foundational CI/CD setup and automated validation of Ansible playbooks.
 
-**Current Milestone: CI/CD Pipeline for Ansible**
+# Current Milestone: CI/CD Pipeline for Ansible
 
 ✔️ What’s Done
 
@@ -17,7 +17,7 @@ This repository is part of an ongoing project to automate a network lab environm
     - Validates requirements.txt (excluding problematic system packages)
 4. Code is passing all syntax and lint checks 
 
-📁 Project Structure (Relevant Parts)
+# 📁 Project Structure (Relevant Parts)
 ```bash
 .
 ├── ansible/
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 # Run a playbook manually (with inventory)
 ansible-playbook -i ansible/inventory.ini ansible/push-config.yml
 
-**GitHub Actions**
+# GitHub Actions
 
 Each push to main or any branch triggers:
 - ansible-lint check
@@ -50,7 +50,7 @@ Each push to main or any branch triggers:
 
 Note: Playbooks that target hosts like leaf1 require an actual inventory setup. Currently, CI uses implicit localhost for syntax checking.
 
-**Next Milestones**
+# Next Milestones
 - Push Ansible Configs to FRR-enabled nodes
 - Integrate NetBox for source-of-truth
 - Automate topology creation using Containerlab
