@@ -1,0 +1,23 @@
+---
+- name: Generate FRR configs locally
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    nodes:
+      - spine1
+      - spine2
+      - leaf1
+      - leaf2
+
+  tasks:
+    - name: Render frr.conf for each node
+      template:
+        src: templates/frr.j2
+        dest: "../containerlab/configs/{{ node_vars.hostname }}.conf"
+      loop: "{{ nodes }}"
+      loop_control:
+        loop_var: node_name
+      vars:
+        node_vars: "{{ lookup('file', 'host_vars/' ~ node_name ~ '.yml') | from_yaml }}"

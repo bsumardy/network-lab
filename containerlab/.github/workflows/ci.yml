@@ -1,0 +1,35 @@
+name: Render and Check FRR Configs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  render-configs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python & Ansible
+      run: |
+        sudo apt update
+        sudo apt install -y python3-pip
+        pip install ansible
+
+    - name: Run Ansible playbook
+      working-directory: ansible
+      run: |
+        ansible-playbook playbook.yml
+
+    - name: Show rendered configs
+      run: |
+        echo "Configs generated:"
+        ls -l containerlab/configs/
+
+    # Optional: Lint/validate output
+    # - name: Validate FRR configs (dummy check)
+    #   run: |
+    #     grep "hostname" containerlab/configs/*.conf

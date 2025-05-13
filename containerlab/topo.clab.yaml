@@ -1,0 +1,31 @@
+name: fabric-lab
+topology:
+  nodes:
+    spine1:
+      kind: linux
+      image: my-netlab-node
+      ports:
+        - 2221:22
+    spine2:
+      kind: linux
+      image: my-netlab-node
+      ports:
+        - 2222:22
+    leaf1:
+      kind: linux
+      image: my-netlab-node
+      ports:
+        - 2223:22
+    leaf2:
+      kind: linux
+      image: my-netlab-node
+      ports:
+        - 2224:22
+
+  links:
+    - endpoints: ["spine1:eth1", "leaf1:eth3"]
+    - endpoints: ["spine1:eth2", "leaf2:eth3"]
+    - endpoints: ["spine2:eth1", "leaf1:eth4"]
+    - endpoints: ["spine2:eth2", "leaf2:eth4"]
+    - endpoints: ["leaf1:eth1", "leaf2:eth1"]
+    - endpoints: ["leaf1:eth2", "leaf2:eth2"]

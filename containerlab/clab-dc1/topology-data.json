@@ -1,0 +1,100 @@
+{
+  "name": "dc1",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-2b84ffe41f61",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "leaf1": {
+      "index": "0",
+      "shortname": "leaf1",
+      "longname": "clab-dc1-leaf1",
+      "fqdn": "leaf1.dc1.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-dc1/leaf1",
+      "kind": "linux",
+      "image": "frrouting/frr:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-2b84ffe41f61",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-dc1/leaf1",
+        "clab-node-longname": "clab-dc1-leaf1",
+        "clab-node-name": "leaf1",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/dc1.yaml",
+        "containerlab": "dc1"
+      },
+      "port-bindings": [
+      ]
+    },
+    "spine1": {
+      "index": "1",
+      "shortname": "spine1",
+      "longname": "clab-dc1-spine1",
+      "fqdn": "spine1.dc1.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-dc1/spine1",
+      "kind": "linux",
+      "image": "frrouting/frr:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-2b84ffe41f61",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-dc1/spine1",
+        "clab-node-longname": "clab-dc1-spine1",
+        "clab-node-name": "spine1",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/dc1.yaml",
+        "containerlab": "dc1"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "leaf1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:06:78:d3",
+        "peer": "z"
+      },
+      "z": {
+        "node": "spine1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:90:2f:3f",
+        "peer": "a"
+      }
+    }
+  ]
+}

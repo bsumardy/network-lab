@@ -1,0 +1,8 @@
+- name: Push config to Containerlab node
+  hosts: leaf1
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Push config
+      ansible.netcommon.cli_config:
+        config: "{{ lookup('file', '../configs/leaf1.cfg') }}"

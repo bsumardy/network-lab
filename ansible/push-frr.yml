@@ -1,0 +1,17 @@
+- name: Push config to FRR Containerlab node
+  hosts: leaf1
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Copy FRR config file
+      copy:
+        src: ../configs/leaf1.cfg
+        dest: /etc/frr/frr.conf
+        owner: frr
+        group: frr
+        mode: 0644
+
+    - name: Restart FRR
+      shell: |
+        systemctl restart frr
+

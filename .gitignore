@@ -1,1 +1,17 @@
-iaac-env/
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore Ansible output files
+*.retry
+
+# Ignore config outputs
+containerlab/configs/*.conf
+
+# Ignore virtual environments
+.venv/
+env/
+*.log
+
+# Ignore system files
+.DS_Store
