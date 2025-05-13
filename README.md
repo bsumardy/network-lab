@@ -42,10 +42,8 @@ ansible-playbook -i ansible/inventory.ini ansible/push-config.yml
 **GitHub Actions**
 
 Each push to main or any branch triggers:
-
-ansible-lint check
-
-Syntax validation for all playbooks in ansible/*.yml
+- ansible-lint check
+- Syntax validation for all playbooks in ansible/*.yml
 
 Note: Playbooks that target hosts like leaf1 require an actual inventory setup. Currently, CI uses implicit localhost for syntax checking.
 
