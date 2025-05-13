@@ -27,7 +27,7 @@ jobs:
 
       - name: Check Ansible playbook syntax
         run: |
-          ansible-playbook playbook.yml --syntax-check
+          ansible-playbook ansible/playbook.yml --syntax-check
 
       - name: Dry-run template rendering (check mode)
         run: |
