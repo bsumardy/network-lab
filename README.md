@@ -3,28 +3,18 @@ This repository is part of an ongoing project to automate a network lab environm
 
 **Current Milestone: CI/CD Pipeline for Ansible**
 ✔️ What’s Done
-Ansible directory structure is in place (ansible/)
-
-Core playbooks:
-
-playbook.yml
-
-push-config.yml
-
-push-frr.yml
-
-GitHub Actions Workflow:
-
-Lints Ansible code using ansible-lint
-
-Checks playbook syntax
-
-Validates requirements.txt (excluding problematic system packages)
-
-Code is passing all syntax and lint checks ✅
+1. Ansible directory structure is in place (ansible/)
+2. Core playbooks:
+    - playbook.yml
+    - push-config.yml
+    - push-frr.yml
+3. GitHub Actions Workflow:
+    - Lints Ansible code using ansible-lint
+    - Checks playbook syntax
+    - Validates requirements.txt (excluding problematic system packages)
+4. Code is passing all syntax and lint checks 
 
 📁 Project Structure (Relevant Parts)
-
 .
 ├── ansible/
 │   ├── inventory.ini       # (Inventory definition)
@@ -48,7 +38,8 @@ pip install -r requirements.txt
 # Run a playbook manually (with inventory)
 ansible-playbook -i ansible/inventory.ini ansible/push-config.yml
 
-⚙️ GitHub Actions
+**GitHub Actions**
+
 Each push to main or any branch triggers:
 
 ansible-lint check
@@ -57,11 +48,8 @@ Syntax validation for all playbooks in ansible/*.yml
 
 Note: Playbooks that target hosts like leaf1 require an actual inventory setup. Currently, CI uses implicit localhost for syntax checking.
 
-🚧 Next Milestones
-Push Ansible Configs to FRR-enabled nodes
-
-Integrate NetBox for source-of-truth
-
-Automate topology creation using Containerlab
-
-Add testing & validation with Batfish
+**Next Milestones**
+- Push Ansible Configs to FRR-enabled nodes
+- Integrate NetBox for source-of-truth
+- Automate topology creation using Containerlab
+- Add testing & validation with Batfish
