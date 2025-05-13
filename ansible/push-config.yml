@@ -6,4 +6,3 @@
     - name: Push config
       ansible.netcommon.cli_config:
         config: "{{ lookup('file', '../configs/leaf1.cfg') }}"
-
