@@ -2,14 +2,8 @@ name: CI - Containerlab Topology Validation
 
 on:
   push:
-    paths:
-      - "containerlab/**"
-      - "ansible/**"
-      - "templates/**"
-      - "host_vars/**"
-      - "create_topo.sh"
-      - "validate_lab.sh"
   pull_request:
+  workflow_dispatch:
 
 jobs:
   validate-clab:
