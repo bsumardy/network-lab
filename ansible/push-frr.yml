@@ -6,12 +6,14 @@
   tasks:
     - name: Backup existing config
       ansible.builtin.command: cp /etc/frr/frr.conf /etc/frr/frr.conf.bak
-      ignore_errors: true
+      register: backup_result
+      failed_when: false
       changed_when: false
 
     - name: Kill FRR processes
       ansible.builtin.command: pkill -9 -f frr
-      ignore_errors: true
+      register: kill_result
+      failed_when: false
       changed_when: false
 
     - name: Copy generated config to container
