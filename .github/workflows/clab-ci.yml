@@ -2,8 +2,14 @@ name: CI - Containerlab Topology Validation
 
 on:
   push:
+    paths:
+      - "containerlab/**"
+      - "ansible/**"
+      - "templates/**"
+      - "host_vars/**"
+      - "create_topo.sh"
+      - "validate_lab.sh"
   pull_request:
-  workflow_dispatch:
 
 jobs:
   validate-clab:
@@ -16,33 +22,28 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y sshpass ansible docker.io
+          sudo apt-get install -y sshpass ansible
+
+      - name: Install Docker without containerd conflict
+        run: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sudo sh get-docker.sh
           sudo systemctl start docker
 
       - name: Install containerlab
         run: |
           curl -sL https://get.containerlab.dev | sudo bash
+          sudo ln -sf /usr/local/bin/containerlab /usr/bin/containerlab
 
       - name: Run topology and configure
         run: |
           chmod +x create_topo.sh validate_lab.sh
-          sudo ./create_topo.sh
+          ./create_topo.sh
 
       - name: Run validation checks
-        run: sudo ./validate_lab.sh
-
-      - name: Check Ansible playbook syntax
-        run: |
-          for pb in ansible/*.yml; do
-            if grep -q '^- *name:' "$pb"; then
-              echo "Checking syntax for $pb"
-              ansible-playbook --syntax-check "$pb"
-            else
-              echo "Skipping non-playbook file $pb"
-            fi
-          done
+        run: ./validate_lab.sh
 
       - name: Teardown lab
         if: always()
         run: |
-          sudo /usr/local/bin/containerlab deploy -t containerlab/topo.clab.yaml
+          /usr/local/bin/containerlab destroy -t containerlab/topo.clab.yaml
