@@ -29,7 +29,11 @@
       changed_when: false
 
     - name: Show FRR daemons running
-      ansible.builtin.shell: set -o pipefail && ps aux | grep frr | grep -v grep
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail
+          ps aux | grep '[f]rr'
+        executable: /bin/bash
       register: frr_status
       changed_when: false
 

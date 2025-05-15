@@ -5,6 +5,8 @@
   gather_facts: false
 
   vars:
+    frr_template: "{{ playbook_dir }}/../templates/frr.j2"
+    destination: "{{ playbook_dir }}/../containerlab/configs/{{ node_name }}.conf"
     nodes:
       - spine1
       - spine2
@@ -14,8 +16,8 @@
   tasks:
     - name: Render frr.conf for each node
       ansible.builtin.template:
-        src: "~/network-lab/templates/frr.conf.j2'"
-        dest: "{{ playbook_dir }}/../containerlab/configs/{{ node_vars.hostname }}.conf"
+        src: "{{ frr_template }}"
+        dest: "{{ destination }}"
         mode: '0644'
       loop: "{{ nodes }}"
       loop_control:
