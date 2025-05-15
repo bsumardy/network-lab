@@ -1,37 +1,36 @@
 ---
-- name: Push FRR config to each node
+- name: Push FRR configuration to nodes
   hosts: routers
   gather_facts: false
-  become: true
 
   tasks:
     - name: Backup existing config
-      command: cp /etc/frr/frr.conf /etc/frr/frr.conf.bak
+      ansible.builtin.command: cp /etc/frr/frr.conf /etc/frr/frr.conf.bak
+      ignore_errors: true
       changed_when: false
-      failed_when: false
 
     - name: Kill FRR processes
-      command: pkill -9 -f frr
+      ansible.builtin.command: pkill -9 -f frr
+      ignore_errors: true
       changed_when: false
-      failed_when: false
 
-    - name: Push new config
-      copy:
-        src: ../configs/{{ inventory_hostname }}/frr.conf
+    - name: Copy generated config to container
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../containerlab/configs/{{ inventory_hostname }}.conf"
         dest: /etc/frr/frr.conf
-        owner: frr
-        group: frr
-        mode: "0644"
+        owner: root
+        group: root
+        mode: '0644'
 
     - name: Restart FRR manually
-      command: /usr/lib/frr/frrinit.sh start
+      ansible.builtin.command: /usr/lib/frr/frrinit.sh start
       changed_when: false
 
     - name: Show FRR daemons running
-      shell: set -o pipefail && ps aux | grep '[f]rr'
-      changed_when: false
+      ansible.builtin.shell: set -o pipefail && ps aux | grep frr | grep -v grep
       register: frr_status
+      changed_when: false
 
-    - name: Debug FRR status
+    - name: Output FRR process status
       ansible.builtin.debug:
-        var: frr_status.stdout_lines
+        msg: "{{ frr_status.stdout_lines }}"
