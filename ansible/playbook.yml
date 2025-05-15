@@ -14,11 +14,11 @@
   tasks:
     - name: Render frr.conf for each node
       ansible.builtin.template:
-        src: "../templates/frr.j2"
-        dest: "../containerlab/configs/{{ node_vars.hostname }}.conf"
+        src: "{{ playbook_dir }}/../templates/frr.conf.j2"
+        dest: "{{ playbook_dir }}/../containerlab/configs/{{ node_vars.hostname }}.conf"
         mode: '0644'
       loop: "{{ nodes }}"
       loop_control:
         loop_var: node_name
       vars:
-        node_vars: "{{ lookup('file', '../host_vars/' ~ node_name ~ '.yml') | from_yaml }}"
+        node_vars: "{{ lookup('file', playbook_dir ~ '/../host_vars/' ~ node_name ~ '.yml') | from_yaml }}"

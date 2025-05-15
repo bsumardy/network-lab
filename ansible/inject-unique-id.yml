@@ -4,15 +4,19 @@
   gather_facts: false
   tasks:
     - name: Create unique ID file if not exists
-      ansible.builtin.shell: |
+      shell: |
         if [ ! -f /etc/unique-id ]; then
           echo "{{ inventory_hostname }}-$(date +%s%N)" > /etc/unique-id
         fi
+      args:
+        executable: /bin/bash
+      changed_when: false
 
     - name: Read unique ID file
-      ansible.builtin.shell: cat /etc/unique-id
-      register: unique_id
+      command: cat /etc/unique-id
+      register: unique_id_raw
+      changed_when: false
 
     - name: Display unique ID for verification
       ansible.builtin.debug:
-        msg: "Node {{ inventory_hostname }} has unique ID: {{ unique_id.stdout }}"
+        msg: "Node {{ inventory_hostname }} has unique ID: {{ unique_id_raw.stdout }}"
