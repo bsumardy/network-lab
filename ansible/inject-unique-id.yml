@@ -1,0 +1,18 @@
+---
+- name: Inject unique ID into each clab node
+  hosts: routers
+  gather_facts: false
+  tasks:
+    - name: Create unique ID file if not exists
+      ansible.builtin.shell: |
+        if [ ! -f /etc/unique-id ]; then
+          echo "{{ inventory_hostname }}-$(date +%s%N)" > /etc/unique-id
+        fi
+
+    - name: Read unique ID file
+      ansible.builtin.shell: cat /etc/unique-id
+      register: unique_id
+
+    - name: Display unique ID for verification
+      ansible.builtin.debug:
+        msg: "Node {{ inventory_hostname }} has unique ID: {{ unique_id.stdout }}"

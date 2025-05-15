@@ -2,8 +2,8 @@ hostname: spine1
 loopback: 172.20.20.1/32
 interfaces:
   - name: eth1
-    ip: 10.0.0.1/30
+    ip: 10.0.0.3/31
     ospf: true
   - name: eth2
-    ip: 10.0.0.5/30
+    ip: 10.0.0.7/31
     ospf: true

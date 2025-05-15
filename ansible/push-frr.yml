@@ -1,17 +1,40 @@
-- name: Push config to FRR Containerlab node
-  hosts: leaf1
-  gather_facts: false
-  become: true
-  tasks:
-    - name: Copy FRR config file
-      ansible.builtin.copy:
-        src: ../configs/leaf1.cfg
-        dest: /etc/frr/frr.conf
-        owner: frr
-        group: frr
-        mode: '0644'
+- name: Push FRR configuration
+  hosts: routers
+  gather_facts: no
+  serial: 1
+  become: yes
 
-    - name: Restart FRR
-      ansible.builtin.systemd:
-        name: frr
-        state: restarted
+  tasks:
+
+    - name: Backup existing config
+      ansible.builtin.shell: cp /etc/frr/frr.conf /etc/frr/frr.conf.bak || true
+
+    - name: Kill FRR processes
+      ansible.builtin.shell: |
+        pkill -9 zebra || true
+        pkill -9 bgpd || true
+        pkill -9 ospfd || true
+        pkill -9 staticd || true
+      ignore_errors: yes
+
+    - name: Copy new FRR config
+      ansible.builtin.copy:
+        src: "../containerlab/configs/{{ inventory_hostname }}.conf"
+        dest: /etc/frr/frr.conf
+        owner: root
+        group: root
+        mode: '0644'
+        force: yes
+        
+    - name: Restart FRR manually
+      ansible.builtin.shell: /usr/lib/frr/frrinit.sh start
+      args:
+        executable: /bin/bash
+
+    - name: Show FRR daemons running
+      ansible.builtin.shell: ps aux | grep frr
+      register: frr_status
+
+    - name: Debug FRR process list
+      debug:
+        var: frr_status.stdout_lines

@@ -1,6 +1,6 @@
 hostname {{ node_vars.hostname }}
 !
-interface loopback0
+interface loopback
  ip address {{ node_vars.loopback }}
 !
 {% for intf in node_vars.interfaces %}
@@ -9,6 +9,7 @@ interface {{ intf.name }}
 {% if intf.ospf %}
  ip ospf area 0
 {% endif %}
+exit
 !
 {% endfor %}
 router ospf
@@ -16,3 +17,4 @@ router ospf
 {% for intf in node_vars.interfaces if intf.ospf %}
  network {{ intf.ip }} area 0
 {% endfor %}
+exit

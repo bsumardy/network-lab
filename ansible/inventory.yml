@@ -1,0 +1,21 @@
+all:
+  vars:
+    ansible_httpapi_use_proxy: false
+    ansible_user: root
+    ansible_password: root
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+  children:
+    routers:
+      hosts:
+        spine1:
+          ansible_host: 127.0.0.1
+          ansible_port: 2221          
+        spine2:
+          ansible_host: 127.0.0.1
+          ansible_port: 2222          
+        leaf1:
+          ansible_host: 127.0.0.1
+          ansible_port: 2223          
+        leaf2:
+          ansible_host: 127.0.0.1
+          ansible_port: 2224

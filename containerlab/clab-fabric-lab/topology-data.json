@@ -1,0 +1,280 @@
+{
+  "name": "fabric-lab",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-951a7945accd",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILT/Vv8glSt8vmqiHM88Y/pFCiyMCvXyMGViC+Pte+YU"],
+  "nodes": {
+    "leaf1": {
+      "index": "0",
+      "shortname": "leaf1",
+      "longname": "clab-fabric-lab-leaf1",
+      "fqdn": "leaf1.fabric-lab.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-fabric-lab/leaf1",
+      "kind": "linux",
+      "image": "my-netlab-node",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-951a7945accd",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-fabric-lab/leaf1",
+        "clab-node-longname": "clab-fabric-lab-leaf1",
+        "clab-node-name": "leaf1",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/topo.clab.yaml",
+        "containerlab": "fabric-lab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 2223,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 2223,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "leaf2": {
+      "index": "1",
+      "shortname": "leaf2",
+      "longname": "clab-fabric-lab-leaf2",
+      "fqdn": "leaf2.fabric-lab.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-fabric-lab/leaf2",
+      "kind": "linux",
+      "image": "my-netlab-node",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-951a7945accd",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-fabric-lab/leaf2",
+        "clab-node-longname": "clab-fabric-lab-leaf2",
+        "clab-node-name": "leaf2",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/topo.clab.yaml",
+        "containerlab": "fabric-lab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 2224,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 2224,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "spine1": {
+      "index": "2",
+      "shortname": "spine1",
+      "longname": "clab-fabric-lab-spine1",
+      "fqdn": "spine1.fabric-lab.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-fabric-lab/spine1",
+      "kind": "linux",
+      "image": "my-netlab-node",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-951a7945accd",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-fabric-lab/spine1",
+        "clab-node-longname": "clab-fabric-lab-spine1",
+        "clab-node-name": "spine1",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/topo.clab.yaml",
+        "containerlab": "fabric-lab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 2221,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 2221,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "spine2": {
+      "index": "3",
+      "shortname": "spine2",
+      "longname": "clab-fabric-lab-spine2",
+      "fqdn": "spine2.fabric-lab.io",
+      "group": "",
+      "labdir": "/home/bst/network-lab/containerlab/clab-fabric-lab/spine2",
+      "kind": "linux",
+      "image": "my-netlab-node",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-951a7945accd",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/bst/network-lab/containerlab/clab-fabric-lab/spine2",
+        "clab-node-longname": "clab-fabric-lab-spine2",
+        "clab-node-name": "spine2",
+        "clab-node-type": "",
+        "clab-owner": "bst",
+        "clab-topo-file": "/home/bst/network-lab/containerlab/topo.clab.yaml",
+        "containerlab": "fabric-lab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 2222,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 2222,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "spine1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:2a:77:cb",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:0c:ce:44",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "spine1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:d3:93:e9",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:b2:01:c3",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "spine2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:b3:51:37",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:70:33:9c",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "spine2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:12:bd:20",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:b7:1c:7f",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:fa:7a:ce",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:89:2c:87",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "leaf1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:88:ae:d8",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:b4:6a:53",
+        "peer": "a"
+      }
+    }
+  ]
+}
