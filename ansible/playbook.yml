@@ -14,7 +14,7 @@
   tasks:
     - name: Render frr.conf for each node
       ansible.builtin.template:
-        src: "{{ lookup('ansible.builtin.realpath', playbook_dir + '/../templates/frr.conf.j2') }}"
+        src: "~/network-lab/templates/frr.conf.j2'"
         dest: "{{ playbook_dir }}/../containerlab/configs/{{ node_vars.hostname }}.conf"
         mode: '0644'
       loop: "{{ nodes }}"
