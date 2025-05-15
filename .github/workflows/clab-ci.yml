@@ -44,4 +44,4 @@ jobs:
 
       - name: Teardown lab
         if: always()
-        run: sudo containerlab destroy -t containerlab/topo.clab.yaml
+        run: containerlab destroy -t containerlab/topo.clab.yaml
