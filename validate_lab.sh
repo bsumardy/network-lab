@@ -14,6 +14,9 @@ for NODE in "${NODES[@]}"; do
 done
 echo "[OK] All containers running."
 
+echo "Waiting 30 seconds to let interfaces and OSPF neighbors fully form..."
+sleep 30
+
 echo "[INFO] Validating hostname & OSPF neighbors on all nodes..."
 for i in "${!NODES[@]}"; do
   NODE=${NODES[$i]}
