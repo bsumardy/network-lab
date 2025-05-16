@@ -15,7 +15,7 @@ done
 echo "[OK] All containers running."
 
 echo "Waiting 60 seconds to let interfaces and OSPF neighbors fully form..."
-sleep 30
+sleep 60
 
 echo "[INFO] Validating hostname & OSPF neighbors on all nodes..."
 for i in "${!NODES[@]}"; do
