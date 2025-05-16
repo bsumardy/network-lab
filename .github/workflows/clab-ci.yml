@@ -30,11 +30,17 @@ jobs:
           curl -sL https://get.containerlab.dev | sudo bash
           echo "/usr/local/bin" >> $GITHUB_PATH
 
+      - name: build custom container image
+        run: |
+          docker build -t my-netlab-node /containerlab/base-node/.
 
       - name: Run topology and configure
         run: |
           chmod +x create_topo.sh validate_lab.sh
           ./create_topo.sh
+          
+      - name: List running containers
+        run: docker ps -a
 
       - name: Run validation checks
         run: ./validate_lab.sh
