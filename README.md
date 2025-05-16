@@ -1,4 +1,4 @@
-#  Network Automation Lab — CI/CD + Automation Setup
+#  Network Automation Lab — CI/CD + Automation Setup -- under construction
 
 This repository is part of an evolving network automation project using **Ansible**, **Containerlab**, and **GitHub Actions**. The current focus is implementing a robust CI/CD pipeline to validate and deploy network configurations in a simulated lab environment.
 
