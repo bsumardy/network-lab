@@ -47,6 +47,5 @@ jobs:
 
       - name: Teardown lab
         if: always()
-        run: |
-          echo "/usr/local/bin" >> $GITHUB_PATH
-          /usr/local/bin/containerlab destroy -t containerlab/topo.clab.yaml
+        run: |          
+          containerlab destroy -t containerlab/topo.clab.yaml
