@@ -14,6 +14,11 @@
       - leaf2
 
   tasks:
+    - name: Ensure containerlab/configs directory exists
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/../containerlab/configs"
+        state: directory
+        recurse: true
     - name: Render frr.conf for each node
       ansible.builtin.template:
         src: "{{ frr_template }}"
