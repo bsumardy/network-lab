@@ -1,4 +1,4 @@
-# 🧪 Network Automation Lab — CI/CD + Automation Setup
+#  Network Automation Lab — CI/CD + Automation Setup
 
 This repository is part of an evolving network automation project using **Ansible**, **Containerlab**, and **GitHub Actions**. The current focus is implementing a robust CI/CD pipeline to validate and deploy network configurations in a simulated lab environment.
 
@@ -21,7 +21,7 @@ This repository is part of an evolving network automation project using **Ansibl
     - `ansible-lint` compliance
     - Playbook syntax
     - `requirements.txt` format (system packages excluded)
-  - CI status: **✅ Passing**
+  - CI status: **✅ Passed**
 
 - **Containerlab Topology Validation**
   - Topology launched via `create_topo.sh`
@@ -55,7 +55,7 @@ This repository is part of an evolving network automation project using **Ansibl
 
 ---
 
-## 🚀 How to Run Locally
+##  How to Run Locally
 
 # 1. Activate your Python virtual environment
 source iaac-env/bin/activate
@@ -72,16 +72,16 @@ ansible-playbook -i ansible/inventory.ini ansible/push-config.yml
 # 5. Validate node config and routing
 bash scripts/validate_lab.sh
 
-# ⚙️ GitHub Actions (CI)
+# GitHub Actions (CI)
 Each push to main or any branch runs the following:
 - ansible-lint for YAML and task best practices
 - Playbook syntax validation (ansible-playbook --syntax-check)
 - Ensures all scripts are executable and topology is valid
 - Runs automated config push + OSPF neighbor validation
 
-# ✅ Latest Status: GREEN
+# Latest Status: GREEN
 
-# 🔜 Next Milestones
+# Next Milestones
  - Extend FRR config automation to include BGP scenarios
  - Integrate NetBox as a dynamic inventory + source-of-truth
  - Auto-generate diagrams from containerlab topology
