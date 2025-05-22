@@ -12,7 +12,7 @@
       - spine2
       - leaf1
       - leaf2
-
+#
   tasks:
     - name: Ensure containerlab/configs directory exists
       ansible.builtin.file:
