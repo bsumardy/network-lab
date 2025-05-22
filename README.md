@@ -1,57 +1,88 @@
-# Network Automation Lab — Initial CI/CD Setup
+#  Network Automation Lab — CI/CD + Automation Setup -- under construction
 
-This repository is part of an ongoing project to automate a network lab environment using Ansible, Containerlab, and GitHub Actions. At this stage, we have completed the foundational CI/CD setup and automated validation of Ansible playbooks.
+This repository is part of an evolving network automation project using **Ansible**, **Containerlab**, and **GitHub Actions**. The current focus is implementing a robust CI/CD pipeline to validate and deploy network configurations in a simulated lab environment.
 
-# Current Milestone: CI/CD Pipeline for Ansible
+---
 
-✔️ What’s Done
+## ✅ Current Milestone: CI/CD for Ansible + Containerlab Integration
 
-1. Ansible directory structure is in place (ansible/)
-2. Core playbooks:
-    - playbook.yml
-    - push-config.yml
-    - push-frr.yml
-3. GitHub Actions Workflow:
-    - Lints Ansible code using ansible-lint
-    - Checks playbook syntax
-    - Validates requirements.txt (excluding problematic system packages)
-4. Code is passing all syntax and lint checks 
+### ✔️ What's Done
 
-# 📁 Project Structure (Relevant Parts)
-```bash
+- **Ansible Automation Structure**
+  - `ansible/` directory with playbooks and templates
+  - Core playbooks:
+    - `playbook.yml`: master automation playbook
+    - `push-config.yml`: push generic configs to devices
+    - `push-frr.yml`: push FRR configurations
+
+- **GitHub Actions Integration**
+  - Workflow defined in `.github/workflows/sanity-check.yml`
+  - Validates:
+    - `ansible-lint` compliance
+    - Playbook syntax
+    - `requirements.txt` format (system packages excluded)
+  - CI status: **✅ Passed**
+
+- **Containerlab Topology Validation**
+  - Topology launched via `create_topo.sh`
+  - Ansible connects to each node and pushes config
+  - OSPF neighbor relationships checked via SSH
+  - Added 30s delay to ensure interfaces/OSPF stabilize before validation
+
+---
+
+## 📁 Project Structure
+```
 .
 ├── ansible/
-│   ├── inventory.ini       # (Inventory definition)
-│   ├── playbook.yml        # Main automation playbook
-│   ├── push-config.yml     # Push configs to network devices
-│   ├── push-frr.yml        # Push FRR configs
-│   └── roles/, templates/  # Ansible role and template structure
+│ ├── inventory.ini # Inventory file
+│ ├── playbook.yml # Main playbook
+│ ├── push-config.yml # Push base configs
+│ ├── push-frr.yml # Push FRR routing configs
+│ ├── roles/ # Ansible roles
+│ └── templates/ # Jinja2 templates
+├── containerlab/
+│ ├── topo.clab.yaml # Topology definition
+│ └── configs/ # Node-specific config outputs
+├── scripts/
+│ ├── create_topo.sh # Brings up the topology
+│ └── validate_lab.sh # Validates node config and OSPF state
 ├── .github/
-│   └── workflows/
-│       └── sanity-check.yml  # CI workflow for lint & syntax check
+│ └── workflows/
+│ └── sanity-check.yml # CI pipeline for linting and validation
 ├── requirements.txt
 ```
-**How to Run Locally**
 
-# Activate your virtual environment
+---
+
+##  How to Run Locally
+
+# 1. Activate your Python virtual environment
 source iaac-env/bin/activate
 
-# Install requirements
+# 2. Install Python dependencies
 pip install -r requirements.txt
 
-# Run a playbook manually (with inventory)
+# 3. Launch the containerlab topology
+bash scripts/create_topo.sh
+
+# 4. Run a playbook
 ansible-playbook -i ansible/inventory.ini ansible/push-config.yml
 
-# GitHub Actions
+# 5. Validate node config and routing
+bash scripts/validate_lab.sh
 
-Each push to main or any branch triggers:
-- ansible-lint check
-- Syntax validation for all playbooks in ansible/*.yml
+# GitHub Actions (CI)
+Each push to main or any branch runs the following:
+- ansible-lint for YAML and task best practices
+- Playbook syntax validation (ansible-playbook --syntax-check)
+- Ensures all scripts are executable and topology is valid
+- Runs automated config push + OSPF neighbor validation
 
-Note: Playbooks that target hosts like leaf1 require an actual inventory setup. Currently, CI uses implicit localhost for syntax checking.
+# Latest Status: GREEN
 
 # Next Milestones
-- Push Ansible Configs to FRR-enabled nodes
-- Integrate NetBox for source-of-truth
-- Automate topology creation using Containerlab
-- Add testing & validation with Batfish
+ - Extend FRR config automation to include BGP scenarios
+ - Integrate NetBox as a dynamic inventory + source-of-truth
+ - Auto-generate diagrams from containerlab topology
+ - Add Batfish for static analysis and config validation
